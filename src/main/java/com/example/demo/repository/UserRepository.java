@@ -1,18 +1,10 @@
 package com.example.demo.repository;
 
 import java.util.Optional;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.example.demo.entity.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-
+// Minimal interface to satisfy UserServiceImpl
+public interface UserRepository {
     Optional<User> findByUsername(String username);
-
-    Optional<User> findByEmail(String email);
-
-    Boolean existsByUsername(String username);
-
-    Boolean existsByEmail(String email);
+    User save(User user);
 }
