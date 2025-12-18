@@ -1,31 +1,24 @@
 package com.example.demo.entity;
 
-import jarkata.persistence.*;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
-
 public class ComplianceLog {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Id
+    @OneToOne
+    private SensorReading sensorReading;
 
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @ManyToOne
+    private ComplianceThreshold thresholdUsed;
 
+    private String statusAssigned;
 
-@OneToOne
-private SensorReading sensorReading;
+    private String remarks;
 
-
-@ManyToOne
-private ComplianceThreshold thresholdUsed;
-
-
-private String statusAssigned;
-
-
-private String remarks;
-
-
-private LocalDateTime loggedAt = LocalDateTime.now();
+    private LocalDateTime loggedAt = LocalDateTime.now();
 }

@@ -1,25 +1,30 @@
 package com.example.demo.entity;
 
-import jarkata.persistence.*;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Location {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @Column(unique = true)
+    private String locationName;
 
+    private String description;
 
-@Column(unique = true)
-private String locationName;
+    private String region;
 
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-private String description;
+    @PrePersist
+    void validate() {
+        if (region == null || region.isBlank()) {
+            throw new IllegalArgumentException("region required");
+        }
+    }
 
-
-private String region;
-
-
-private LocalDateTime createdAt = LocalDateTime.now();
+    // getters & setters
 }

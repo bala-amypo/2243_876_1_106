@@ -1,30 +1,31 @@
 package com.example.demo.entity;
 
-import jarkata.persistence.*;
- 
-@Entity
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
+@Entity
 public class Sensor {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+    @Column(unique = true)
+    private String sensorCode;
 
+    private String sensorType;
 
-@Column(unique = true)
-private String sensorCode;
+    @ManyToOne
+    private Location location;
 
+    private LocalDateTime installedAt = LocalDateTime.now();
 
-private String sensorType;
+    private Boolean isActive = true;
 
-
-@ManyToOne
-private Location location;
-
-
-private LocalDateTime installedAt = LocalDateTime.now();
-
-
-private Boolean isActive = true;
+    @PrePersist
+    void validate() {
+        if (sensorType == null || sensorType.isBlank()) {
+            throw new IllegalArgumentException("sensorType");
+        }
+    }
 }
