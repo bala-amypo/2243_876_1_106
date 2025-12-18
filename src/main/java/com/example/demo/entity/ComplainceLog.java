@@ -2,7 +2,7 @@ package com.example.demo.entity;
 
 import jarkata.persistence.*;
 
-@entity
+@Entity
 
 public class ComplianceLog {
 
