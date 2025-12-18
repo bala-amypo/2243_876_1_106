@@ -20,25 +20,21 @@ public class Location {
     private LocalDateTime createdAt = LocalDateTime.now();
 
     @PrePersist
-    void validate() {
+    public void validate() {
         if (region == null || region.isBlank()) {
             throw new IllegalArgumentException("region required");
         }
     }
 
-    // getters & setters
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-
     public String getLocationName() { return locationName; }
     public void setLocationName(String locationName) { this.locationName = locationName; }
-
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-
     public String getRegion() { return region; }
     public void setRegion(String region) { this.region = region; }
-
     public LocalDateTime getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

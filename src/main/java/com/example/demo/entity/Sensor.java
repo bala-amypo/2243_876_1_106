@@ -23,28 +23,23 @@ public class Sensor {
     private Boolean isActive = true;
 
     @PrePersist
-    void validate() {
+    public void validate() {
         if (sensorType == null || sensorType.isBlank()) {
             throw new IllegalArgumentException("sensorType");
         }
     }
 
-    // getters & setters
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-
     public String getSensorCode() { return sensorCode; }
     public void setSensorCode(String sensorCode) { this.sensorCode = sensorCode; }
-
     public String getSensorType() { return sensorType; }
     public void setSensorType(String sensorType) { this.sensorType = sensorType; }
-
     public Location getLocation() { return location; }
     public void setLocation(Location location) { this.location = location; }
-
     public LocalDateTime getInstalledAt() { return installedAt; }
     public void setInstalledAt(LocalDateTime installedAt) { this.installedAt = installedAt; }
-
     public Boolean getIsActive() { return isActive; }
     public void setIsActive(Boolean isActive) { this.isActive = isActive; }
 }
