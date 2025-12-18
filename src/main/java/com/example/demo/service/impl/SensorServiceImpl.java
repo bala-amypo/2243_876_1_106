@@ -18,7 +18,7 @@ public class SensorServiceImpl implements SensorService {
     private final SensorRepository sensorRepository;
     private final LocationRepository locationRepository;
 
-    // REQUIRED constructor order
+    // Constructor
     public SensorServiceImpl(SensorRepository sensorRepository,
                              LocationRepository locationRepository) {
         this.sensorRepository = sensorRepository;
@@ -28,16 +28,18 @@ public class SensorServiceImpl implements SensorService {
     @Override
     public Sensor createSensor(Long locationId, Sensor sensor) {
 
-        if (sensor.getSensorType() == null) {
-            throw new IllegalArgumentException("sensorType");
+        if (sensor.getSensorType() == null || sensor.getSensorType().isBlank()) {
+            throw new IllegalArgumentException("sensorType required");
         }
 
         Location location = locationRepository.findById(locationId)
-                .orElseThrow(() -> new ResourceNotFoundException("not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Location not found"));
 
         sensor.setLocation(location);
         sensor.setInstalledAt(LocalDateTime.now());
-        sensor.setActive(true);
+
+        // Corrected setter
+        sensor.setIsActive(true);
 
         return sensorRepository.save(sensor);
     }
@@ -45,7 +47,7 @@ public class SensorServiceImpl implements SensorService {
     @Override
     public Sensor getSensor(Long id) {
         return sensorRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Sensor not found"));
     }
 
     @Override
