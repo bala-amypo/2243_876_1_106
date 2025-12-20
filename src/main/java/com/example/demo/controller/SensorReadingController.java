@@ -1,38 +1,34 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.entity.SensorReading;
 import com.example.demo.service.SensorReadingService;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/readings")
-@Tag(name = "Sensor Readings")
 public class SensorReadingController {
 
-    private final SensorReadingService service;
+    private final SensorReadingService sensorReadingService;
 
-    public SensorReadingController(SensorReadingService service) {
-        this.service = service;
+    public SensorReadingController(SensorReadingService sensorReadingService) {
+        this.sensorReadingService = sensorReadingService;
     }
 
     @PostMapping("/{sensorId}")
-    public SensorReading submit(@PathVariable Long sensorId,
-                                @RequestBody SensorReading reading) {
-        return service.submitReading(sensorId, reading);
+    public SensorReading submitReading(@PathVariable Long sensorId,
+                                       @RequestBody SensorReading reading) {
+        return sensorReadingService.submitReading(sensorId, reading);
     }
 
     @GetMapping("/sensor/{sensorId}")
-    public List<SensorReading> getBySensor(@PathVariable Long sensorId) {
-        return service.getReadingsBySensor(sensorId);
+    public List<SensorReading> getReadingsBySensor(@PathVariable Long sensorId) {
+        return sensorReadingService.getReadingsBySensor(sensorId);
     }
 
     @GetMapping("/{id}")
-    public SensorReading getById(@PathVariable Long id) {
-        return service.getReading(id);
+    public SensorReading getReading(@PathVariable Long id) {
+        return sensorReadingService.getReading(id);
     }
 }

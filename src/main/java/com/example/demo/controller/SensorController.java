@@ -1,38 +1,34 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.entity.Sensor;
 import com.example.demo.service.SensorService;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/sensors")
-@Tag(name = "Sensors")
 public class SensorController {
 
-    private final SensorService service;
+    private final SensorService sensorService;
 
-    public SensorController(SensorService service) {
-        this.service = service;
+    public SensorController(SensorService sensorService) {
+        this.sensorService = sensorService;
     }
 
     @PostMapping("/{locationId}")
-    public Sensor create(@PathVariable Long locationId,
-                         @RequestBody Sensor sensor) {
-        return service.createSensor(locationId, sensor);
+    public Sensor createSensor(@PathVariable Long locationId,
+                               @RequestBody Sensor sensor) {
+        return sensorService.createSensor(locationId, sensor);
     }
 
     @GetMapping
-    public List<Sensor> getAll() {
-        return service.getAllSensors();
+    public List<Sensor> getAllSensors() {
+        return sensorService.getAllSensors();
     }
 
     @GetMapping("/{id}")
-    public Sensor getById(@PathVariable Long id) {
-        return service.getSensor(id);
+    public Sensor getSensor(@PathVariable Long id) {
+        return sensorService.getSensor(id);
     }
 }

@@ -1,37 +1,33 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.entity.ComplianceLog;
 import com.example.demo.service.ComplianceEvaluationService;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/compliance")
-@Tag(name = "Compliance Evaluation")
 public class ComplianceEvaluationController {
 
-    private final ComplianceEvaluationService service;
+    private final ComplianceEvaluationService evaluationService;
 
-    public ComplianceEvaluationController(ComplianceEvaluationService service) {
-        this.service = service;
+    public ComplianceEvaluationController(ComplianceEvaluationService evaluationService) {
+        this.evaluationService = evaluationService;
     }
 
     @PostMapping("/evaluate/{readingId}")
-    public ComplianceLog evaluate(@PathVariable Long readingId) {
-        return service.evaluateReading(readingId);
+    public ComplianceLog evaluateReading(@PathVariable Long readingId) {
+        return evaluationService.evaluateReading(readingId);
     }
 
     @GetMapping("/reading/{readingId}")
-    public List<ComplianceLog> getByReading(@PathVariable Long readingId) {
-        return service.getLogsByReading(readingId);
+    public List<ComplianceLog> getLogsByReading(@PathVariable Long readingId) {
+        return evaluationService.getLogsByReading(readingId);
     }
 
     @GetMapping("/{id}")
-    public ComplianceLog getById(@PathVariable Long id) {
-        return service.getLog(id);
+    public ComplianceLog getLog(@PathVariable Long id) {
+        return evaluationService.getLog(id);
     }
 }

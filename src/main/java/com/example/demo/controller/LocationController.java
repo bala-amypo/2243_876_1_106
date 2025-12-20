@@ -1,37 +1,33 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.entity.Location;
 import com.example.demo.service.LocationService;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/locations")
-@Tag(name = "Locations")
 public class LocationController {
 
-    private final LocationService service;
+    private final LocationService locationService;
 
-    public LocationController(LocationService service) {
-        this.service = service;
+    public LocationController(LocationService locationService) {
+        this.locationService = locationService;
     }
 
     @PostMapping
-    public Location create(@RequestBody Location location) {
-        return service.createLocation(location);
+    public Location createLocation(@RequestBody Location location) {
+        return locationService.createLocation(location);
     }
 
     @GetMapping
-    public List<Location> getAll() {
-        return service.getAllLocations();
+    public List<Location> getAllLocations() {
+        return locationService.getAllLocations();
     }
 
     @GetMapping("/{id}")
-    public Location getById(@PathVariable Long id) {
-        return service.getLocation(id);
+    public Location getLocation(@PathVariable Long id) {
+        return locationService.getLocation(id);
     }
 }

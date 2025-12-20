@@ -1,42 +1,38 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
-import org.springframework.web.bind.annotation.*;
-
 import com.example.demo.entity.ComplianceThreshold;
 import com.example.demo.service.ComplianceThresholdService;
+import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/thresholds")
-@Tag(name = "Thresholds")
 public class ComplianceThresholdController {
 
-    private final ComplianceThresholdService service;
+    private final ComplianceThresholdService thresholdService;
 
-    public ComplianceThresholdController(ComplianceThresholdService service) {
-        this.service = service;
+    public ComplianceThresholdController(ComplianceThresholdService thresholdService) {
+        this.thresholdService = thresholdService;
     }
 
     @PostMapping
-    public ComplianceThreshold create(@RequestBody ComplianceThreshold threshold) {
-        return service.createThreshold(threshold);
+    public ComplianceThreshold createThreshold(@RequestBody ComplianceThreshold threshold) {
+        return thresholdService.createThreshold(threshold);
     }
 
     @GetMapping
-    public List<ComplianceThreshold> getAll() {
-        return service.getAllThresholds();
+    public List<ComplianceThreshold> getAllThresholds() {
+        return thresholdService.getAllThresholds();
     }
 
     @GetMapping("/{id}")
-    public ComplianceThreshold getById(@PathVariable Long id) {
-        return service.getThreshold(id);
+    public ComplianceThreshold getThreshold(@PathVariable Long id) {
+        return thresholdService.getThreshold(id);
     }
 
     @GetMapping("/type/{sensorType}")
     public ComplianceThreshold getBySensorType(@PathVariable String sensorType) {
-        return service.getThresholdBySensorType(sensorType);
+        return thresholdService.getThresholdBySensorType(sensorType);
     }
 }
