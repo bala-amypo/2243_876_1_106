@@ -1,22 +1,20 @@
 package com.example.demo.service.impl;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
 import com.example.demo.entity.ComplianceThreshold;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repository.ComplianceThresholdRepository;
 import com.example.demo.service.ComplianceThresholdService;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ComplianceThresholdServiceImpl implements ComplianceThresholdService {
 
-    private final ComplianceThresholdRepository repository;
+    private final ComplianceThresholdRepository thresholdRepository;
 
-    public ComplianceThresholdServiceImpl(ComplianceThresholdRepository repository) {
-        this.repository = repository;
+    public ComplianceThresholdServiceImpl(ComplianceThresholdRepository thresholdRepository) {
+        this.thresholdRepository = thresholdRepository;
     }
 
     @Override
@@ -26,24 +24,23 @@ public class ComplianceThresholdServiceImpl implements ComplianceThresholdServic
             throw new IllegalArgumentException("minvalue");
         }
 
-        threshold.setCreatedAt(LocalDateTime.now());
-        return repository.save(threshold);
+        return thresholdRepository.save(threshold);
     }
 
     @Override
     public ComplianceThreshold getThreshold(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("not found"));
+        return thresholdRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Threshold not found"));
     }
 
     @Override
     public ComplianceThreshold getThresholdBySensorType(String sensorType) {
-        return repository.findBySensorType(sensorType)
-                .orElseThrow(() -> new ResourceNotFoundException("not found"));
+        return thresholdRepository.findBySensorType(sensorType)
+                .orElseThrow(() -> new ResourceNotFoundException("Threshold not found"));
     }
 
     @Override
     public List<ComplianceThreshold> getAllThresholds() {
-        return repository.findAll();
+        return thresholdRepository.findAll();
     }
 }
