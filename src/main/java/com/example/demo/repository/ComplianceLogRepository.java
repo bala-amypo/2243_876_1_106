@@ -1,10 +1,9 @@
 package com.example.demo.repository;
 
-import java.util.List;
-
+import com.example.demo.entity.ComplianceLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.demo.entity.ComplianceLog;
+import java.util.List;
 
 public interface ComplianceLogRepository
         extends JpaRepository<ComplianceLog, Long> {
