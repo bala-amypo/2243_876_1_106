@@ -36,3 +36,6 @@ public class ComplianceThresholdController {
         return thresholdService.getThresholdBySensorType(sensorType);
     }
 }
+
+
+
