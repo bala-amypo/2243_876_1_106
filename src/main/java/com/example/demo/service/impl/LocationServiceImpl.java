@@ -1,4 +1,4 @@
-mvn cpackage com.example.demo.service.impl;
+package com.example.demo.service.impl;
 
 import com.example.demo.entity.Location;
 import com.example.demo.exception.ResourceNotFoundException;
