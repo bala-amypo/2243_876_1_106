@@ -118,6 +118,7 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <testNGArtifactName>org.testng:testng</testNGArtifactName>
                     <properties>
                         <property>
                             <name>listener</name>
@@ -125,6 +126,10 @@
                         </property>
                     </properties>
                 </configuration>
+                <configuration>
+    <testNGArtifactName>org.testng:testng</testNGArtifactName>
+</configuration>
+
             </plugin>
 
 
