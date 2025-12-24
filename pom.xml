@@ -111,27 +111,28 @@
             </plugin>
             <!-- Surefire plugin to enable TestNG -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <testNGArtifactName>org.testng:testng</testNGArtifactName>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>org.testng.reporters.EmailableReporter2</value>
-                        </property>
-                    </properties>
-                </configuration>
-                <configuration>
-    <testNGArtifactName>org.testng:testng</testNGArtifactName>
-</configuration>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
 
-            </plugin>
+            <configuration>
+                <!-- Tell Maven to use TestNG -->
+                <testNGArtifactName>org.testng:testng</testNGArtifactName>
 
+                <!-- Pick up all *Test.java classes -->
+                <includes>
+                    <include>**/*Test.java</include>
+                </includes>
+
+                <!-- Enable TestNG listeners -->
+                <properties>
+                    <property>
+                        <name>listener</name>
+                        <value>org.testng.reporters.EmailableReporter2</value>
+                    </property>
+                </properties>
+            </configuration>
+        </plugin>
 
         </plugins>
     </build>
