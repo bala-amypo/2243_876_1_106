@@ -1,30 +1,16 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "sensor_readings")
 public class SensorReading {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable = false)
     private Double readingValue;
-    
-    @Column(nullable = false)
     private LocalDateTime readingTime = LocalDateTime.now();
-    
-    @Column(nullable = false)
     private String status = "PENDING";
-    
-    @ManyToOne
-    @JoinColumn(name = "sensor_id")
     private Sensor sensor;
-
+    
     public SensorReading() {}
-
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
