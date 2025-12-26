@@ -1,28 +1,14 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "compliance_thresholds")
 public class ComplianceThreshold {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(nullable = false)
     private String sensorType;
-    
-    @Column(nullable = false)
     private Double minValue;
-    
-    @Column(nullable = false)
     private Double maxValue;
-    
-    @Column(nullable = false)
     private String severityLevel;
-
+    
     public ComplianceThreshold() {}
-
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
     
