@@ -1,8 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.ComplianceThreshold;
+import com.example.demo.entity.ComplianceLog;
 
-public interface ComplianceThresholdService {
-    ComplianceThreshold createThreshold(ComplianceThreshold threshold);
-    ComplianceThreshold getThresholdBySensorType(String sensorType);
+public interface ComplianceEvaluationService {
+    ComplianceLog evaluateReading(Long readingId);
 }
